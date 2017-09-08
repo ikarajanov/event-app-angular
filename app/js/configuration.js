@@ -3,17 +3,29 @@ app.config(function ($qProvider, $stateProvider, $urlRouterProvider) {
 
   $stateProvider.state('home', {
     url: '/home',
-    templateUrl: 'views/home.html',
-    controller: 'HomeController',
-    controllerAs: 'ctrl'
+    views: {
+      'homeNav': {
+        templateUrl: 'views/user-home/user-home.html',
+        controller: 'HomeController'
+      },
+      'mainView': {
+        templateUrl: 'views/home.html',
+        controller: 'HomeController'
+      }
+    }
   });
 
-  $urlRouterProvider.otherwise("home");
+  $urlRouterProvider.otherwise("userHome");
 });
 
 app.run(function($rootScope, $window) {
 
     $rootScope.user = {};
+    $rootScope.userLogged = {};
+
+  $scope.$watch('localStorage.user', function(newUser, oldUser) {
+    $rootScope.user = newUser;
+  });
 
     $window.fbAsyncInit = function() {
       // Executed when the SDK is loaded
@@ -59,24 +71,33 @@ app.run(function($rootScope, $window) {
 
     };
 
-    (function(d){
-      // load the Facebook javascript SDK
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
 
-      var js,
-          id = 'facebook-jssdk',
-          ref = d.getElementsByTagName('script')[0];
-
-      if (d.getElementById(id)) {
+      if (d.getElementById(id))
         return;
-      }
 
-      js = d.createElement('script');
-      js.id = id;
-      js.async = true;
-      js.src = "//connect.facebook.net/en_US/all.js";
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.10&appId=1484816704916747";
 
-      ref.parentNode.insertBefore(js, ref);
+      fjs.parentNode.insertBefore(js, fjs);
 
-    }(document));
+    }(document, 'script', 'facebook-jssdk'));
 
+
+  var finished_rendering = function() {
+
+    console.log("finished rendering plugins");
+    var spinner = document.getElementById("spinner");
+    spinner.removeAttribute("style");
+    spinner.removeChild(spinner.childNodes[0]);
+  };
+
+  FB.Event.subscribe('xfbml.render', finished_rendering);
+
+  FB.getLoginStatus(function(response) {
+    if (response.status === 'connected') {
+      var accessToken = response.authResponse.accessToken;
+    }
+  } );
   });

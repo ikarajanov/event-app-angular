@@ -1,4 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark topNavContainer">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark topNavContainer"
+      ng-controller="HomeController">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
           aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -9,23 +10,43 @@
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
-        <a class="nav-link" href="#/home">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="#/home" ng-click="checkLoginState()">Home <span class="sr-only">(current)</span></a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0 home-login-margin">
       <a class="btn btn-success my-2 my-sm-0" href="#!/login" >Log In</a>
-      <button class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>
+      <!--<button class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>-->
 
-      <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content" ng-controller="LoginController">
-              <div ng-include="'views/login/login.html'"></div>
-          </div>
-        </div>
-      </div>
+      <!--<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">-->
+        <!--<div class="modal-dialog modal-lg">-->
+          <!--<div class="modal-content" ng-controller="LoginController">-->
+              <!--<div ng-include="'views/login/login.html'"></div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
     </form>
     <form class="form-inline my-2 my-lg-0 home-login-margin">
-      <a class="btn btn-primary my-2 my-sm-0" href="#!/signup" >Sign Up</a>
+      <a class="btn btn-warning my-2 my-sm-0" href="#!/signUp" >Sign up</a>
+    </form>
+    <form class="form-inline my-2 my-lg-0 home-login-margin">
+      <!--<fb:login-button show-faces="true" max-rows="1"-->
+      <!--size="large"></fb:login-button>-->
+
+      <div id="spinner"
+           style="
+        background: #4267b2;
+        border-radius: 5px;
+        color: white;
+        height: 40px;
+        text-align: center;
+        width: 250px;">
+        Loading
+        <div class="fb-login-button" data-max-rows="1" data-size="large"
+             data-button-type="continue_with"
+             data-show-faces="false" data-auto-logout-link="false"
+             data-use-continue-as="true"
+             ng-click="checkLoginState()"></div>
+      </div>
     </form>
   </div>
 </nav>

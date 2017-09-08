@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-md-12" >
+    <h1 style="color: whitesmoke">Events</h1>
+  </div>
+  <div class="col-md-12" >
+    <div ng-repeat="event in events">
+     <div style="background-color: white">
+       <p> id: {{event.id}} </p>
+       <p> name: {{event.name}} </p>
+       <p> owner: {{event.owner}} </p>
+       <p> location: {{event.location}} </p>
+       <p> numberOfPeopleAttending: {{event.numberOfPeopleAttending}} </p>
+       <p> category: {{event.category}} </p>
+       <p> coverPhoto: {{event.coverPhoto}} </p>
+       <p> description: {{event.description}} </p>
+       <p> endTime: {{event.startTime}} </p>
+       <p> endTime: {{event.endTime}} </p>
+       <p> isCanceled: {{event.isCanceled}} </p>
+     </div>
+    </div>
+  </div>
+</div>

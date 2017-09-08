@@ -1,13 +1,14 @@
 app.factory("userFactory", function($http, $localStorage, $q, $window) {
 
   var port = "http://localhost:8085";
+  var prefix = "/user";
 
   function addNewUser(user) {
 
     var deferred = $q.defer();
     $http({
       method: 'POST',
-      url: port + '/addNewUser',
+      url: port + prefix + '/addNew',
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
         'Access-Control-Allow-Origin' : '*'
@@ -26,22 +27,27 @@ app.factory("userFactory", function($http, $localStorage, $q, $window) {
   function logIn(user) {
 
     var deferred = $q.defer();
-
-    FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
+    $http({
+      method: 'POST',
+      url: port + prefix + '/logIn',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+        'Access-Control-Allow-Origin' : '*'
+      },
+      data: user
+    }).then(function(loggedUser){
+      $localStorage.loggedUser = loggedUser;
+      deferred.resolve();
+    }, function(error){
+      deferred.reject(error);
     });
 
     return deferred.promise;
   }
   
-  function statusChangeCallback() {
-    
-  }
-
 
   return {
     addNewUser: addNewUser,
-    logIn: logIn,
-    statusChangeCallback: statusChangeCallback
+    logIn: logIn
   }
 });

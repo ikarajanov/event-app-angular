@@ -38,19 +38,26 @@
   <script src="js/controllers/wp-combo/wpComboController.js"></script>
   <script src="js/controllers/user-home/userHomeController.js"></script>
   <script src="js/controllers/user-home/user.home.state.js"></script>
+  <script src="js/controllers/events/eventController.js"></script>
+  <script src="js/controllers/events/createEventController.js"></script>
+  <script src="js/controllers/events/event.state.js"></script>
   <script src="js/directives/wp-combo/wp-combo.directive.js"></script>
   <script src="js/directives/autocomlete/autocomplete.directive.js"></script>
   <script src="js/services/user/user.factory.js"></script>
   <script src="js/services/user/user.js"></script>
+  <script src="js/services/events/event.factory.js"></script>
+  <script src="js/services/events/event.js"></script>
   <script src="http://connect.facebook.net/en_US/all.js"></script>
 </head>
 <body ng-app="event-organizer">
 
   <div ng-include="'views/nav/nav.html'"></div>
-  <div ng-include="'views/home-carousel.html'"></div>
-  <div ng-include="'views/user-home/user-home-nav.html'"></div>
+
+  <ui-view name="homeNav">
+  </ui-view>
+
   <div class="main-page container" style="margin-top: 0px !important;">
-    <div ui-view style="height: 300px; background-color: whitesmoke;"></div>
+   <ui-view name="mainView"></ui-view>
   </div>
 
   <div id="fb-root"></div>
