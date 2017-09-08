@@ -1,0 +1,43 @@
+
+body {
+  background-image: url("../images/tiesto-music-live-concert.jpg");
+  background-size: cover;
+}
+
+.main-page {
+  margin-top: 50px;
+}
+
+.top-buffer {
+  margin-top: 20px;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.test {
+  background-color: black;
+}
+
+.home-login-margin {
+  margin-left: 10px;
+}
+
+.errorMessage {
+  color: red;
+}
+
+.eventAppLogo {
+  width: 45px;
+}
+
+.topNavContainer {
+  padding: 8px 15%;
+}
+
+.middleNavContainer {
+  padding: 10px 8%;
+  background-color: #d9d9d9 !important;
+  margin-bottom: 0px !important;
+}

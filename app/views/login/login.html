@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="col-md-12 login-title">
+    <h2>Log In</h2>
+  </div>
+  <form name="loginForm">
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <label for="loginEmail" class="col-form-label">Email</label>
+        <input type="email"  class="form-control" id="loginEmail" name="email"
+               placeholder="Email" ng-model="user.email" required>
+      </div>
+      <div class="form-group col-md-12">
+       <p class="errorMessage" ng-show="loginForm.email.$error.notExist">
+         This email doesn't exist. Please enter a different account or get new one
+       </p>
+      </div>
+
+      <div class="form-group col-md-12">
+        <label for="loginPassword" class="col-form-label">Password</label>
+        <input type="password" class="form-control" id="loginPassword" name="password"
+               placeholder="Password" ng-model="user.password" required>
+      </div>
+      <div class="form-group col-md-12">
+        <p class="errorMessage" ng-show="loginForm.password.$error.incorrectPassword">
+          The password is incorrect.
+        </p>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-10">
+        <button class="btn btn-primary " ng-click="logIn(loginForm.$invalid)">Sign in</button>
+      </div>
+      <div class="col-md-2">
+        <fb:login-button show-faces="true" max-rows="1"
+                         size="large"></fb:login-button>
+      </div>
+    </div>
+
+  </form>
+</div>
