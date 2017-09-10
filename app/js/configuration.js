@@ -18,14 +18,10 @@ app.config(function ($qProvider, $stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise("userHome");
 });
 
-app.run(function($rootScope, $window) {
+app.run(function($rootScope, $window, $localStorage) {
 
-    $rootScope.user = {};
+    $rootScope.user = $localStorage.loggedUser;
     $rootScope.userLogged = {};
-
-  $scope.$watch('localStorage.user', function(newUser, oldUser) {
-    $rootScope.user = newUser;
-  });
 
     $window.fbAsyncInit = function() {
       // Executed when the SDK is loaded
@@ -84,16 +80,7 @@ app.run(function($rootScope, $window) {
 
     }(document, 'script', 'facebook-jssdk'));
 
-
-  var finished_rendering = function() {
-
-    console.log("finished rendering plugins");
-    var spinner = document.getElementById("spinner");
-    spinner.removeAttribute("style");
-    spinner.removeChild(spinner.childNodes[0]);
-  };
-
-  FB.Event.subscribe('xfbml.render', finished_rendering);
+  // FB.Event.subscribe('xfbml.render');
 
   FB.getLoginStatus(function(response) {
     if (response.status === 'connected') {

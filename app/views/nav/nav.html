@@ -13,40 +13,25 @@
         <a class="nav-link" href="#/home" ng-click="checkLoginState()">Home <span class="sr-only">(current)</span></a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0 home-login-margin">
-      <a class="btn btn-success my-2 my-sm-0" href="#!/login" >Log In</a>
-      <!--<button class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>-->
-
-      <!--<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">-->
-        <!--<div class="modal-dialog modal-lg">-->
-          <!--<div class="modal-content" ng-controller="LoginController">-->
-              <!--<div ng-include="'views/login/login.html'"></div>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
+    <form class="form-inline home-login-margin">
+      <div class="row">
+        <a class="btn btn-success" href="#!/login" ng-if="$root.user == null" >Log In</a>
+        <div class="userDiv" ng-show="$root.user != null ">
+          <a class="userName">{{$root.user.firstName}}</a>
+          <img src="./images/profile-picture.jpg" alt="..." class="border rounded-circle userProfilePicture">
+        </div>
+        <a class="btn btn-success logOutButton" ng-click="logOut()" ng-show="$root.user != null " >Log Out</a>
+      </div>
     </form>
-    <form class="form-inline my-2 my-lg-0 home-login-margin">
+    <form class="form-inline my-2 my-lg-0 home-login-margin" ng-if="$root.user == null">
       <a class="btn btn-warning my-2 my-sm-0" href="#!/signUp" >Sign up</a>
     </form>
-    <form class="form-inline my-2 my-lg-0 home-login-margin">
-      <!--<fb:login-button show-faces="true" max-rows="1"-->
-      <!--size="large"></fb:login-button>-->
-
-      <div id="spinner"
-           style="
-        background: #4267b2;
-        border-radius: 5px;
-        color: white;
-        height: 40px;
-        text-align: center;
-        width: 250px;">
-        Loading
-        <div class="fb-login-button" data-max-rows="1" data-size="large"
-             data-button-type="continue_with"
-             data-show-faces="false" data-auto-logout-link="false"
-             data-use-continue-as="true"
-             ng-click="checkLoginState()"></div>
-      </div>
+    <form class="form-inline my-2 my-lg-0 home-login-margin" ng-if="$root.user == null">
+      <div class="fb-login-button" data-max-rows="1" data-size="large"
+           data-button-type="continue_with"
+           data-show-faces="false" data-auto-logout-link="false"
+           data-use-continue-as="true"
+           ng-click="checkLoginState()"></div>
     </form>
   </div>
 </nav>

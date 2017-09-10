@@ -7,3 +7,26 @@
   width: 100%;
   height: 630px;
 }
+
+.userName {
+  color: #f26926 !important;
+  font-size: 1.8em;
+  padding-right: 14px;
+  padding-top: 7px;
+  height: 100%;
+}
+
+.userDiv {
+  height: 100%;
+  display: inline-block;
+}
+
+.userProfilePicture {
+  max-width: 7%;
+  border-color: #f26926 !important;
+}
+
+.logOutButton {
+  height: 40px;
+  margin-top: 7px;
+}

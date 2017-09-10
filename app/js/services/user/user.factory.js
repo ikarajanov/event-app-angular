@@ -1,4 +1,4 @@
-app.factory("userFactory", function($http, $localStorage, $q, $window) {
+app.factory("userFactory", function($http, $localStorage, $q, $rootScope) {
 
   var port = "http://localhost:8085";
   var prefix = "/user";
@@ -14,8 +14,9 @@ app.factory("userFactory", function($http, $localStorage, $q, $window) {
         'Access-Control-Allow-Origin' : '*'
       },
       data: user
-    }).then(function(loggedUser){
-      $localStorage.loggedUser = loggedUser;
+    }).then(function(response){
+      $localStorage.loggedUser = response.data;
+      $rootScope.user = response.data;
       deferred.resolve();
     }, function(error){
       deferred.reject(error);
@@ -35,8 +36,9 @@ app.factory("userFactory", function($http, $localStorage, $q, $window) {
         'Access-Control-Allow-Origin' : '*'
       },
       data: user
-    }).then(function(loggedUser){
-      $localStorage.loggedUser = loggedUser;
+    }).then(function(response){
+      $localStorage.loggedUser = response.data;
+      $rootScope.user =  response.data;
       deferred.resolve();
     }, function(error){
       deferred.reject(error);

@@ -1,7 +1,9 @@
 app.factory("User", function() {
   var me = this;
 
-  function User(email, password, address, city, country, zip) {
+  function User(firstName, lastName, email, password, address, city, country, zip) {
+    me.firstName = firstName;
+    me.lastName = lastName;
     me.email = email;
     me.password = password;
     me.address = address;

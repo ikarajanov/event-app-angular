@@ -8,6 +8,9 @@ app.controller('LoginController', function($scope, userFactory, $location) {
       return;
     }
 
+    $scope.loginForm.email.$error.notExist = false;
+    $scope.loginForm.password.$error.incorrectPassword = false;
+
     var promise = userFactory.logIn($scope.user);
     promise.then(function() {
 
@@ -17,7 +20,7 @@ app.controller('LoginController', function($scope, userFactory, $location) {
       var message = reason.data.message;
       if (message === "emailNotExist") {
         $scope.loginForm.email.$error.notExist = true;
-      } else if (message === "invalidPassword") {
+      } else if (message === "incorrectPassword") {
         $scope.loginForm.password.$error.incorrectPassword = true;
       }
     })
@@ -28,6 +31,8 @@ app.controller('LoginController', function($scope, userFactory, $location) {
     if (invalidForm) {
       return;
     }
+
+    $scope.userAlreadyExist = false;
 
     var promise = userFactory.addNewUser($scope.user);
     promise.then(function() {
