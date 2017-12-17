@@ -3,7 +3,7 @@ app.factory("Event", function() {
 
   function Event(id, name, owner, location,
                  numberOfPeopleAttending, category, coverPhoto,
-                 description, startTime, endTime, isCanceled) {
+                 description, startDate, startTime, endDate, endTime, isCanceled) {
 
     me.id = id;
     me.name = name;
@@ -13,7 +13,9 @@ app.factory("Event", function() {
     me.category = category;
     me.coverPhoto = coverPhoto;
     me.description = description;
+    me.startDate = startDate;
     me.startTime = startTime;
+    me.endDate = endDate;
     me.endTime = endTime;
     me.isCanceled = isCanceled;
   }

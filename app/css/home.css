@@ -30,3 +30,13 @@
   height: 40px;
   margin-top: 7px;
 }
+
+.createEventButtonDiv {
+  padding: 0px;
+}
+
+.createEventButton {
+  padding: 0px;
+  margin: 0px;
+}
+
