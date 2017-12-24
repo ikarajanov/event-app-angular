@@ -23,6 +23,8 @@
     "momentjs": "~2.0.0",
     "ngstorage": "^0.3.11",
     "popper.js": "^1.12.3",
-    "angular-facebook": "0.2.3"
+    "angular-facebook": "0.2.3",
+    "ngImgCrop": "0.3.2",
+    "angular-google-places-autocomplete": "0.2.7"
   }
 }

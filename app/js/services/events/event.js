@@ -18,6 +18,8 @@ app.factory("Event", function() {
     me.endDate = endDate;
     me.endTime = endTime;
     me.isCanceled = isCanceled;
+
+    return me;
   }
 
   return Event;

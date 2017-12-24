@@ -1,4 +1,4 @@
-<md-dialog aria-label="Create Event" style="width: 600px">
+<md-dialog class="event-dialog" aria-label="Create Event">
   <form ng-cloak>
     <md-toolbar>
       <div class="md-toolbar-tools bg-dark">
@@ -23,14 +23,16 @@
                   <label>Name</label>
                   <input id="event-name" ng-model="event.name">
                 </md-input-container>
+                <md-input-container>
+                  <label>Description</label>
+                  <textarea rows="4" cols="100" ng-model="event.description"></textarea>
+                </md-input-container>
               </div>
               <div class="form-group col-md-6">
                 <label class="col-form-label">Cover Photo</label>
-                <div ngf-drop ng-model="picFile" ngf-pattern="image/*"
-                     class="cropArea">
-                  <img-crop image="event.coverPhoto  +| ngfDataUrl"
-                            result-image="croppedDataUrl" ng-init="croppedDataUrl=''">
-                  </img-crop>
+                <div>Select an image file: <image-upload image="myImage" /></div>
+                <div class="cropArea">
+                  <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
                 </div>
                 <button ng-click="upload(croppedDataUrl, picFile.name)">Submit</button>
 
@@ -61,13 +63,7 @@
                   <div layout="row">
                     <md-input-container>
                       <label>Location</label>
-                      <md-select ng-model="event.location">
-                        <md-option><em>None</em></md-option>
-                        <md-option ng-repeat="location in locations"
-                                   ng-value="location" ng-disabled="$index === -1">
-                          {{location}}
-                        </md-option>
-                      </md-select>
+                      <input type="text" g-places-autocomplete ng-model="event.location" />
                     </md-input-container>
                   </div>
                 </md-card-content>

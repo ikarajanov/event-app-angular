@@ -1,9 +1,11 @@
-app.controller('CreateEventController', function($scope, eventFactory, $mdDialog, Upload, $timeout) {
+app.controller('CreateEventController', function($scope, eventFactory, $mdDialog, Upload, $timeout, Location) {
 
   var me = this;
   $scope.event = {};
 
   $scope.categories = {};
+  $scope.myImage = '';
+  $scope.myCroppedImage='';
 
   $scope.createEvent = function(invalidForm) {
 
@@ -11,7 +13,9 @@ app.controller('CreateEventController', function($scope, eventFactory, $mdDialog
       return;
     }
 
-    eventFactory.createNewEvent($scope.event);
+    $scope.event.location = getLocation($scope.event.location);
+
+    eventFactory.createNewEvent($scope.event, $scope.myCroppedImage);
   };
 
   $scope.hide = function() {
@@ -28,14 +32,6 @@ app.controller('CreateEventController', function($scope, eventFactory, $mdDialog
     promise.then(function(categories) {
       $scope.categories = categories;
     })
-  };
-
-  me.loadLocations = function() {
-    // var promise = eventFactory.getEventLocations();
-
-    // promise.then(function(locations) {
-    //   $scope.locations = locations;
-    // })
   };
 
   $scope.upload = function (dataUrl, name) {
@@ -56,8 +52,18 @@ app.controller('CreateEventController', function($scope, eventFactory, $mdDialog
     });
   };
 
+  function getLocation(location) {
+    var name = location.name;
+    var address = location.formatted_address;
+    var url = location.url;
+    var lat = $scope.event.location.geometry.location.lat();
+    var lng = $scope.event.location.geometry.location.lng();
+
+    var eventLocation = Location(name, address, url, lat, lng);
+    return eventLocation;
+  }
+
   $scope.myStyle = {'width': $scope.progress + '%' };
 
   me.loadCategories();
-  me.loadLocations();
 });
