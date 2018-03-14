@@ -42,3 +42,45 @@ form .progress {
 .event-dialog {
   width: 45%
 }
+
+.cover-photo-header {
+  margin-bottom: 20px;
+}
+
+.margin-bottom-up-10 {
+  margin: 10px 0px;
+}
+
+.maxSizePercentage {
+  width: 100%;
+}
+
+.blockElement {
+  display: block;
+  margin: 40px 0px;
+}
+
+.mainInfo {
+  height: 500px;
+}
+
+.startDatePicker {
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.startDateHeader {
+  margin-bottom: 30px;
+}
+
+.descriptionBox {
+  margin-top: 40px;
+}
+
+.maxAttendeesPickerBlock {
+  margin-bottom: 0px;
+}
+
+.startDatePickerBlock {
+  margin: 0px;
+}
