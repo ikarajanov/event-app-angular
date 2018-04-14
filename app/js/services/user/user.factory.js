@@ -1,6 +1,6 @@
 app.factory("userFactory", function($http, $localStorage, $q, $rootScope) {
 
-  var port = "http://localhost:8085";
+  var port = "http://localhost:8080";
   var prefix = "/user";
 
   function addNewUser(user) {

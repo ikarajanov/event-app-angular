@@ -52,4 +52,6 @@ app.controller('HomeController', function($scope, eventFactory, $localStorage,
       $mdDialog.hide(answer);
     };
   }
+
+  $scope.getAllEvents();
 });

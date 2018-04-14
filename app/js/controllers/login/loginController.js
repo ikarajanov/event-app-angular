@@ -49,13 +49,13 @@ app.controller('LoginController', function($scope, userFactory, $location) {
 
   $scope.checkLoginState = function() {
 
-    FB.getLoginStatus(function(response) {
-      if (response.status === 'connected') {
-        var accessToken = response.authResponse.accessToken;
-
-        eventFactory.getAllEvents(accessToken);
-      }
-    });
+    // FB.getLoginStatus(function(response) {
+    //   if (response.status === 'connected') {
+    //     var accessToken = response.authResponse.accessToken;
+    //
+    //     eventFactory.getAllEvents(accessToken);
+    //   }
+    // });
   };
 
 });

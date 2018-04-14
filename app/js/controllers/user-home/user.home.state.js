@@ -8,7 +8,7 @@ app.config(function($stateProvider) {
         controller: 'UserHomeController'
       },
       'mainView': {
-        templateUrl: 'views/user-home/events.html',
+        templateUrl: 'views/events/events.html',
         controller: 'HomeController'
       }
     }

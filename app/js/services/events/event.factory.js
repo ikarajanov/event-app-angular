@@ -1,7 +1,7 @@
 app.factory("eventFactory", function($http, $localStorage, $q) {
 
   var me = this;
-  me.port = "http://localhost:8085";
+  me.port = "http://localhost:8080";
   me.prefix = "/event";
   me.categories = {};
   me.locations = {};
@@ -29,13 +29,10 @@ app.factory("eventFactory", function($http, $localStorage, $q) {
     var userId = $localStorage.loggedUser.id;
 
     $http({
-      method: 'POST',
+      method: 'GET',
       url: me.port + me.prefix + '/getAll',
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8',
-        'Access-Control-Allow-Origin' : '*'
-      },
-      data: userId
+      headers : {'Accept' : 'application/json'},
+      params: {userId: userId}
     }).then(function(events){
       $localStorage.events = events;
       deferred.resolve();

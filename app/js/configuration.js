@@ -82,9 +82,9 @@ app.run(function($rootScope, $window, $localStorage) {
 
   // FB.Event.subscribe('xfbml.render');
 
-  FB.getLoginStatus(function(response) {
-    if (response.status === 'connected') {
-      var accessToken = response.authResponse.accessToken;
-    }
-  } );
+  // FB.getLoginStatus(function(response) {
+  //   if (response.status === 'connected') {
+  //     var accessToken = response.authResponse.accessToken;
+  //   }
+  // } );
   });
