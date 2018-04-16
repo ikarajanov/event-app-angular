@@ -17,8 +17,8 @@
       <div class="row">
         <a class="btn btn-success" href="#!/login" ng-if="$root.user == null" >Log In</a>
         <div class="userDiv" ng-show="$root.user != null ">
-          <a class="userName">{{$root.user.firstName}}</a>
-          <img src="./images/profile-picture.jpg" alt="..." class="border rounded-circle userProfilePicture">
+          <img src="./images/profile-picture.jpg" alt="..." class="border rounded-circle userProfilePicture pull-right">
+          <a class="userName pull-right">{{$root.user.firstName}}</a>
         </div>
         <a class="btn btn-success logOutButton" ng-click="logOut()" ng-show="$root.user != null " >Log Out</a>
       </div>

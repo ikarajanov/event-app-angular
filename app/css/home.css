@@ -24,6 +24,7 @@
 .userProfilePicture {
   max-width: 7%;
   border-color: #f26926 !important;
+  margin-right: 35px
 }
 
 .logOutButton {
@@ -40,3 +41,42 @@
   margin: 0px;
 }
 
+.coverPhoto {
+  padding: 0px 60px;
+}
+
+.eventContainer {
+  margin-top: 60px;
+}
+
+.eventBox {
+  background-color: #989393ba;
+  padding: 30px 20px;
+  height: 480px;
+}
+
+.eventHeader {
+  text-align: center
+}
+
+.eventDetailsContainer {
+  height: 160px;
+  padding: 0% 15%;
+}
+
+#locationAddress {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.appFooter {
+  height: 40px;
+  margin-top: 10px;
+  background-color: #d9d9d9;
+}
+
+.footerContainer {
+  margin-left: auto;
+  margin-right: auto;
+}
