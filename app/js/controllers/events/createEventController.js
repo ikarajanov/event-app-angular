@@ -1,4 +1,5 @@
-app.controller('CreateEventController', function($scope, eventFactory, $mdDialog, Upload, $timeout, Location) {
+app.controller('CreateEventController', function($scope, eventFactory, $mdDialog,
+                                                 Upload, $timeout, Location, $localStorage, $moment) {
 
   var me = this;
   $scope.event = {};
@@ -13,7 +14,8 @@ app.controller('CreateEventController', function($scope, eventFactory, $mdDialog
       return;
     }
 
-    $scope.event.location = getLocation($scope.event.location);
+    $scope.event.location = createLocation($scope.event.location);
+    $scope.event.owner = $localStorage.loggedUser;
 
     eventFactory.createNewEvent($scope.event, $scope.myCroppedImage);
   };
@@ -52,15 +54,14 @@ app.controller('CreateEventController', function($scope, eventFactory, $mdDialog
     });
   };
 
-  function getLocation(location) {
+  function createLocation(location) {
     var name = location.name;
     var address = location.formatted_address;
     var url = location.url;
     var lat = $scope.event.location.geometry.location.lat();
     var lng = $scope.event.location.geometry.location.lng();
 
-    var eventLocation = Location(name, address, url, lat, lng);
-    return eventLocation;
+    return Location(name, address, url, lat, lng);
   }
 
   $scope.myStyle = {'width': $scope.progress + '%' };

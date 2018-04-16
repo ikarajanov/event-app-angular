@@ -1,4 +1,5 @@
 app.config(function ($qProvider, $stateProvider, $urlRouterProvider) {
+
   $qProvider.errorOnUnhandledRejections(false);
 
   $stateProvider.state('home', {

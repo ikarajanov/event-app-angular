@@ -57,30 +57,34 @@ form .progress {
 
 .blockElement {
   display: block;
-  margin: 40px 0px;
+  margin: 75px 0px;
 }
 
 .mainInfo {
   height: 500px;
 }
 
-.startDatePicker {
+.eventDatePickerFrom {
+  margin-top: 20px;
+}
+
+.eventDatePicker {
   display: inline-block;
   margin-bottom: 15px;
 }
 
-.startDateHeader {
+.eventDateHeader {
   margin-bottom: 30px;
 }
 
+.eventDatePickerBlock {
+  margin: 0px 60px;
+}
+
 .descriptionBox {
-  margin-top: 40px;
+
 }
 
 .maxAttendeesPickerBlock {
   margin-bottom: 0px;
-}
-
-.startDatePickerBlock {
-  margin: 0px;
 }
