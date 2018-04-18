@@ -6,14 +6,14 @@ app.factory("eventFactory", function($http, $localStorage, $q) {
   me.categories = {};
   me.locations = {};
 
-  function getAllEvents() {
+  function getUserEvents() {
 
     var deferred = $q.defer();
     var userId = $localStorage.loggedUser.id;
 
     $http({
       method: 'GET',
-      url: me.port + me.prefix + '/getAll',
+      url: me.port + me.prefix + '/getUserEvents',
       headers : {'Accept' : 'application/json'},
       params: {userId: userId}
     }).then(function(events){
@@ -102,7 +102,7 @@ app.factory("eventFactory", function($http, $localStorage, $q) {
   }
 
   return {
-    getAllEvents: getAllEvents,
+    getUserEvents: getUserEvents,
     createNewEvent: createNewEvent,
     getEventCategories: getEventCategories,
     getEventLocations: getEventLocations

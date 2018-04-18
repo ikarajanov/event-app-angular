@@ -47,3 +47,7 @@ body {
 .toastStyle > div {
   background-color: #006900 !important;
 }
+
+.navbar-nav > .active {
+  background-color: #b7b2b2;
+}
