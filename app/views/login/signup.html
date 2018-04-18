@@ -35,26 +35,9 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="signup-address" class="col-form-label">Address</label>
-      <input class="form-control" id="signup-address"
-             placeholder="Your address" ng-model="user.address">
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="signup-city" class="col-form-label">City</label>
-        <input class="form-control" id="signup-city"
-               placeholder="City" ng-model="user.city">
-      </div>
-      <div class="form-group col-md-4">
-        <label for="signup-state" class="col-form-label">State</label>
-        <input class="form-control" id="signup-state"
-               placeholder="State" ng-model="user.state">
-      </div>
-      <div class="form-group col-md-2">
-        <label for="signup-zip" class="col-form-label">Zip</label>
-        <input class="form-control" id="signup-zip"
-               placeholder="Zip" ng-model="user.zip">
-      </div>
+      <label class="col-form-label">Address</label>
+      <input type="text" class="form-control" placeholder="Your address"
+             g-places-autocomplete ng-model="user.location" />
     </div>
 
     <button class="btn btn-primary" ng-click="signUp(loginForm.$invalid)">Sign Up</button>

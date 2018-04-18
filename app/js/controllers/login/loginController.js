@@ -1,4 +1,4 @@
-app.controller('LoginController', function($scope, userFactory, $location) {
+app.controller('LoginController', function($scope, userFactory, $location, LocationUtility) {
   $scope.user = {};
   $scope.userAlreadyExist = false;
 
@@ -33,6 +33,8 @@ app.controller('LoginController', function($scope, userFactory, $location) {
     }
 
     $scope.userAlreadyExist = false;
+
+    $scope.user.location = LocationUtility.createLocation($scope.user.location);
 
     var promise = userFactory.addNewUser($scope.user);
     promise.then(function() {

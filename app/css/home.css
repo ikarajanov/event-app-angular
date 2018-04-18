@@ -47,12 +47,14 @@
 
 .eventContainer {
   margin-top: 60px;
+  padding-bottom: 100px;
 }
 
 .eventBox {
   background-color: #989393ba;
   padding: 30px 20px;
   height: 480px;
+  margin-bottom: 25px;
 }
 
 .eventHeader {
@@ -72,7 +74,10 @@
 
 .appFooter {
   height: 40px;
-  margin-top: 10px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
   background-color: #d9d9d9;
 }
 

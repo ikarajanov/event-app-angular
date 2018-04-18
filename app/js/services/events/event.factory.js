@@ -6,23 +6,6 @@ app.factory("eventFactory", function($http, $localStorage, $q) {
   me.categories = {};
   me.locations = {};
 
-  function getAllFbEvents(accessToken) {
-
-    $http({
-      method: 'POST',
-      url: me.port + me.prefix + '/getAllFbEvents',
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8',
-        'Access-Control-Allow-Origin' : '*'
-      },
-      data: accessToken
-    }).then(function(events){
-      $localStorage.events = events;
-    }, function(error){
-
-    });
-  }
-
   function getAllEvents() {
 
     var deferred = $q.defer();

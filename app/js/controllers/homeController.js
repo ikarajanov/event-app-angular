@@ -6,14 +6,15 @@ app.controller('HomeController', function($scope, eventFactory, $localStorage,
 
   $scope.getAllEvents = function() {
 
-    var promise = eventFactory.getAllEvents();
+    if ($localStorage.loggedUser != null) {
+        var promise = eventFactory.getAllEvents();
 
-    promise.then(function() {
-      $scope.events = $localStorage.events.data;
-    }, function(reason) {
+        promise.then(function () {
+            $scope.events = $localStorage.events.data;
+        }, function (reason) {
 
-    })
-
+        })
+    }
   };
 
   $scope.logOut = function() {
