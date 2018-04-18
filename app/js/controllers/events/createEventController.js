@@ -1,4 +1,4 @@
-app.controller('CreateEventController', function($scope, eventFactory, $mdDialog,
+app.controller('CreateEventController', function($scope, eventFactory, $mdDialog, $mdToast,
                                                  Upload, $timeout, Location, $localStorage, LocationUtility) {
 
   var me = this;
@@ -17,7 +17,17 @@ app.controller('CreateEventController', function($scope, eventFactory, $mdDialog
     $scope.event.location = LocationUtility.createLocation($scope.event.location);
     $scope.event.owner = $localStorage.loggedUser;
 
-    eventFactory.createNewEvent($scope.event, $scope.myCroppedImage);
+    var promise = eventFactory.createNewEvent($scope.event, $scope.myCroppedImage);
+
+    promise.then(function() {
+      $mdDialog.hide();
+    }, function () {
+      $mdToast.show(
+          $mdToast.simple()
+              .textContent('Some error occurs while creating of the event!')
+              .position('top right')
+              .toastClass("toastStyle"));
+    })
   };
 
   $scope.hide = function() {

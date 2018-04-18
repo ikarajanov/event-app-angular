@@ -28,6 +28,8 @@ app.factory("eventFactory", function($http, $localStorage, $q) {
 
   function createNewEvent(event, image) {
 
+    var deferred = $q.defer();
+
     $http({
       method: 'POST',
       url: me.port + me.prefix + '/createNew',
@@ -41,9 +43,12 @@ app.factory("eventFactory", function($http, $localStorage, $q) {
       }
     }).then(function(events){
       $localStorage.events = events;
+      deferred.resolve();
     }, function(error){
-
+      deferred.reject(error);
     });
+
+    return deferred.promise;
   }
   
   function getEventCategories() {

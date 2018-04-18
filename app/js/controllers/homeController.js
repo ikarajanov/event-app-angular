@@ -1,5 +1,5 @@
 app.controller('HomeController', function($scope, eventFactory, $localStorage,
-                                          $rootScope, $location, $mdDialog, User) {
+                                          $rootScope, $location, $mdDialog, $mdToast, User) {
 
   $scope.user = new User;
   $scope.events = {};
@@ -11,8 +11,12 @@ app.controller('HomeController', function($scope, eventFactory, $localStorage,
 
         promise.then(function () {
             $scope.events = $localStorage.events.data;
-        }, function (reason) {
-
+        }, function () {
+            $mdToast.show(
+                $mdToast.simple()
+                    .textContent('Some error occurs!')
+                    .position('top right')
+                    .toastClass("toastStyle"));
         })
     }
   };
@@ -26,33 +30,18 @@ app.controller('HomeController', function($scope, eventFactory, $localStorage,
 
   $scope.showAdvanced = function(ev) {
     $mdDialog.show({
-      controller: DialogController,
-      templateUrl: 'views/events/create-event.html',
-      parent: angular.element(document.body),
-      targetEvent: ev,
-      clickOutsideToClose: true,
-      fullscreen: true // Only for -xs, -sm breakpoints.
-    })
-        .then(function(answer) {
-          $scope.status = 'You said the information was "' + answer + '".';
-        }, function() {
-          $scope.status = 'You cancelled the dialog.';
-        });
+        controller: 'CreateEventController',
+        templateUrl: 'views/events/create-event.html',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose: true,
+        fullscreen: false // Only for -xs, -sm breakpoints.
+    }).then(function() {
+        $scope.events = $localStorage.events.data;
+    }, function() {
+        $scope.status = 'You cancelled the dialog.';
+    });
   };
-
-  function DialogController($scope, $mdDialog) {
-    $scope.hide = function() {
-      $mdDialog.hide();
-    };
-
-    $scope.cancel = function() {
-      $mdDialog.cancel();
-    };
-
-    $scope.answer = function(answer) {
-      $mdDialog.hide(answer);
-    };
-  }
 
   $scope.getAllEvents();
 });

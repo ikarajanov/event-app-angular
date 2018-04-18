@@ -5,7 +5,7 @@ app.config(function($stateProvider) {
     views: {
       'homeNav': {
         templateUrl: 'views/user-home/user-home.html',
-        controller: 'UserHomeController'
+        controller: 'HomeController'
       },
       'mainView': {
         templateUrl: 'views/events/events.html',
