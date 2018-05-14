@@ -85,3 +85,30 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+.coverPageContainer {
+  text-align: center;
+  padding-top: 8%;
+}
+
+.coverPageHeader {
+  margin-bottom: .5rem;
+  font-weight: 500;
+  text-shadow: 2px 2px #040404;
+  font-family: 'Shojumaru';
+  font-size: 200px;
+  line-height: 1.1;
+  color: #f00;
+}
+
+.coverPageHr {
+  max-width: 100px;
+  margin: 15px auto;
+  border-width: 4px;
+  border-color: white;
+}
+
+.coverPageSubtitle {
+  text-shadow: 2px 2px #000000;
+  color: #ff0000;
+}

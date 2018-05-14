@@ -51,3 +51,13 @@ body {
 .navbar-nav > .active {
   background-color: #b7b2b2;
 }
+
+.backgroundTransient {
+  background-color: #621de800 !important;
+  border-color: #00000000 !important;
+}
+
+.navbarButton {
+  color: white;
+  font-size: 1.7rem;
+}

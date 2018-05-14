@@ -9,22 +9,20 @@
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
-        <a class="nav-link" href="#/home" ng-click="checkLoginState()">Home <span class="sr-only">(current)</span></a>
-      </li>
+
     </ul>
     <form class="form-inline my-2 my-lg-0 signInUpBtn" ng-if="$root.user == null">
-      <a class="btn btn-warning btn-lg my-2 my-sm-0" href="#!/signUp" >Sign up</a>
+      <a class="btn btn-warning btn-lg my-2 my-sm-0 backgroundTransient navbarButton" href="#!/signUp" >Sign up</a>
     </form>
     </form>
     <form class="form-inline home-login-margin">
       <div class="row">
-        <a class="btn btn-success btn-lg logInOutBtn" href="#!/login" ng-if="$root.user == null || $root.user == undefined" >Log In</a>
+        <a class="btn btn-success btn-lg logInOutBtn backgroundTransient" href="#!/login" ng-if="$root.user == null || $root.user == undefined" >Log In</a>
         <div class="userDiv" ng-if="$root.user != null && $root.user != undefined">
           <img src="./images/profile-picture.jpg" alt="..." class="border rounded-circle userProfilePicture pull-right">
           <a class="userName pull-right">{{$root.user.firstName}}</a>
         </div>
-        <a class="btn btn-success logOutButton" ng-click="logOut()" ng-show="$root.user != null && $root.user != undefined" >Log Out</a>
+        <a class="btn btn-success logOutButton backgroundTransient navbarButton" ng-click="logOut()" ng-show="$root.user != null && $root.user != undefined" >Log Out</a>
       </div>
     </form>
   </div>

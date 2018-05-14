@@ -21,6 +21,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="bower_components/angular-google-places-autocomplete/src/autocomplete.css">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Shojumaru' rel='stylesheet'>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="bower_components/angular/angular.js"></script>
@@ -72,11 +73,19 @@
 
   <div ng-include="'views/nav/nav.html'"></div>
 
-  <ui-view name="homeNav">
-  </ui-view>
+  <div ng-show="$root.user != null">
+    <ui-view name="homeNav">
+    </ui-view>
 
-  <div class="main-page container" style="margin-top: 0px !important;">
-   <ui-view name="mainView"></ui-view>
+    <div class="main-page container" style="margin-top: 0 !important;">
+     <ui-view name="mainView"></ui-view>
+    </div>
+  </div>
+
+  <div ng-show="$root.user == null" class="coverPageContainer">
+    <h1 class="coverPageHeader">Evento</h1>
+    <hr class="mb-4 coverPageHr">
+    <h3 class="coverPageSubtitle">A range of features at your disposal to tailor your event</h3>
   </div>
 
   <footer class="appFooter">
