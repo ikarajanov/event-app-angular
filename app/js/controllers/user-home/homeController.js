@@ -5,13 +5,14 @@ app.controller('HomeController', function($scope, eventFactory, $localStorage,
     $scope.user = new User;
     $scope.events = {};
 
-    $scope.getUserEvents = function() {
+    $scope.getNearbyEvents = function() {
 
     if ($localStorage.loggedUser != null) {
-        var promise = eventFactory.getUserEvents();
+        var radius = 1500;
+        var promise = eventFactory.getNearbyEvents(radius);
 
         promise.then(function () {
-            $scope.events = $localStorage.events.data;
+            $scope.events = $localStorage.events;
         }, function () {
             $mdToast.show(
                 $mdToast.simple()
@@ -28,7 +29,6 @@ app.controller('HomeController', function($scope, eventFactory, $localStorage,
        $location.path("/home");
      };
 
-
      $scope.showAdvanced = function(ev) {
        $mdDialog.show({
            controller: 'CreateEventController',
@@ -38,11 +38,27 @@ app.controller('HomeController', function($scope, eventFactory, $localStorage,
            clickOutsideToClose: true,
            fullscreen: false // Only for -xs, -sm breakpoints.
        }).then(function() {
-           $scope.events = $localStorage.events.data;
+           $location.path("/myEvents");
+           $scope.events = $localStorage.events;
        }, function() {
-           $scope.status = 'You cancelled the dialog.';
+           $scope.events = $localStorage.events;
        });
      };
 
-     $scope.getUserEvents();
+    $scope.showEventDetails = function(ev, event) {
+        $mdDialog.show({
+            controller: 'EventDetailsController',
+            templateUrl: 'views/events/event-details.html',
+            locals: {event: event},
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: true
+        }).then(function() {
+            $scope.events = $localStorage.events;
+        }, function() {
+            $scope.events = $localStorage.events;
+        });
+    };
+
+    $scope.getNearbyEvents();
 });

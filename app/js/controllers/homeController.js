@@ -10,7 +10,7 @@ app.controller('HomeController', function($scope, eventFactory, $localStorage,
         var promise = eventFactory.getAllEvents();
 
         promise.then(function () {
-            $scope.events = $localStorage.events.data;
+            $scope.events = $localStorage.events;
         }, function () {
             $mdToast.show(
                 $mdToast.simple()
@@ -37,9 +37,9 @@ app.controller('HomeController', function($scope, eventFactory, $localStorage,
         clickOutsideToClose: true,
         fullscreen: false // Only for -xs, -sm breakpoints.
     }).then(function() {
-        $scope.events = $localStorage.events.data;
+        $scope.events = $localStorage.events;
     }, function() {
-        $scope.status = 'You cancelled the dialog.';
+        $scope.events = $localStorage.events;
     });
   };
 

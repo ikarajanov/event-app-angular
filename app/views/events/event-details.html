@@ -1,0 +1,58 @@
+<md-dialog class="event-dialog eventDialogContainer" aria-label="Event Details">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools bg-dark">
+        <h2>Event Details</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <div class="col-md-12 eventDetailsHeader">
+          <img src="data:image/png;base64,{{event.coverPhoto}}"  class="eventDetailsCoverPhoto" />
+          <h1 class="eventDetailsHeading">{{event.name}}</h1>
+        </div>
+        <hr class="mb-4">
+        <div class="container">
+          <div class="col-md-12">
+            <div>
+              <label class="eventDetailsLabels">Location</label>
+              <p>{{event.location.address}}</p>
+            </div>
+            <div>
+              <label class="eventDetailsLabels">Starts on</label>
+              <p>{{event.startTime}}</p>
+              <label class="eventDetailsLabels">Ends on</label>
+              <p>{{event.endTime}}</p>
+            </div>
+            <div>
+              <label class="eventDetailsLabels">Hosted by</label>
+              <p>{{event.owner.firstName}} {{event.owner.lastName}}</p>
+            </div>
+            <div>
+              <label class="eventDetailsPeopleAttending">Until now {{event.numberOfPeopleAttending}} people are attending at this event.</label>
+            </div>
+            <hr class="mb-1">
+            <div>
+              <label class="eventDetailsLabels">About the event</label>
+              <p>{{event.description}}</p>
+            </div>
+            </div>
+        </div>
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row" class="eventDialogActions">
+      <md-button class="md-raised" ng-click="cancel()">
+        Close
+      </md-button>
+      <span flex></span>
+      <md-button  ng-if="!$root.userHome" class="md-raised md-warn" ng-click="deleteEvent()" md-autofocus>
+        Delete
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

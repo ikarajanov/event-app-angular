@@ -17,7 +17,7 @@ app.factory("eventFactory", function($http, $localStorage, $q) {
       headers : {'Accept' : 'application/json'},
       params: {userId: userId}
     }).then(function(events){
-      $localStorage.events = events;
+      $localStorage.events = events.data;
       deferred.resolve();
     }, function(error){
       deferred.reject(error);
@@ -42,7 +42,7 @@ app.factory("eventFactory", function($http, $localStorage, $q) {
         image: image
       }
     }).then(function(events){
-      $localStorage.events = events;
+      $localStorage.events = events.data;
       deferred.resolve();
     }, function(error){
       deferred.reject(error);
@@ -101,9 +101,57 @@ app.factory("eventFactory", function($http, $localStorage, $q) {
     return deferred.promise;
   }
 
+  function getNearbyEvents(radius) {
+
+      var deferred = $q.defer();
+      var userId = $localStorage.loggedUser.id;
+
+      $http({
+          method: 'GET',
+          url: me.port + me.prefix + '/getNearbyEvents',
+          headers : {'Accept' : 'application/json'},
+          params: {
+            userId: userId,
+            radius: radius
+          }
+      }).then(function(events){
+          $localStorage.events = events.data;
+          deferred.resolve();
+      }, function(error){
+          deferred.reject(error);
+      });
+
+      return deferred.promise;
+  }
+
+  function deleteEvent(event) {
+
+      var deferred = $q.defer();
+      var userId = $localStorage.loggedUser.id;
+
+      $http({
+          method: 'POST',
+          url: me.port + me.prefix + '/deleteEvent',
+          headers : {'Accept' : 'application/json'},
+          params: {
+              eventId: event.id,
+              userId: userId
+          }
+      }).then(function(events){
+          $localStorage.events = events.data;
+          deferred.resolve();
+      }, function(error){
+          deferred.reject(error);
+      });
+
+      return deferred.promise;
+  }
+
   return {
     getUserEvents: getUserEvents,
+    getNearbyEvents: getNearbyEvents,
     createNewEvent: createNewEvent,
+    deleteEvent: deleteEvent,
     getEventCategories: getEventCategories,
     getEventLocations: getEventLocations
   }

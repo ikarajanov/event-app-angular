@@ -88,3 +88,52 @@ form .progress {
 .maxAttendeesPickerBlock {
   margin-bottom: 0px;
 }
+
+.eventDialogContainer {
+  background-color: #f3f3f3;
+}
+
+.eventDetailsHeader {
+  width: 100%;
+  height: auto;
+}
+
+.eventDetailsCoverPhoto {
+  width: 100%;
+  height: 400px;
+  padding: 0;
+}
+
+.eventDetailsHeading {
+  text-align: center;
+  margin-bottom: .5rem;
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.2;
+  font-size: 3.2rem;
+  color: inherit;
+}
+
+.eventDialogActions {
+  background-color: #343a40;
+}
+
+.eventDetailsLabels {
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-style: italic!important;
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: left;
+}
+
+.eventDetailsPeopleAttending {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-style: italic!important;
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: left;
+}
