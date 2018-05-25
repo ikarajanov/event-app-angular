@@ -12,17 +12,23 @@
 
     </ul>
     <form class="form-inline my-2 my-lg-0 signInUpBtn" ng-if="$root.user == null">
-      <a class="btn btn-warning btn-lg my-2 my-sm-0 backgroundTransient navbarButton" href="#!/signUp" >Sign up</a>
+      <a class="btn btn-lg my-2 my-sm-0 backgroundTransient navbarButton" href="#!/signUp" >Sign up</a>
     </form>
     </form>
     <form class="form-inline home-login-margin">
       <div class="row">
-        <a class="btn btn-success btn-lg logInOutBtn backgroundTransient" href="#!/login" ng-if="$root.user == null || $root.user == undefined" >Log In</a>
+        <a class="btn btn-lg logInOutBtn backgroundTransient"
+           href="#!/login" ng-if="$root.user == null || $root.user == undefined">
+          Log In
+        </a>
         <div class="userDiv" ng-if="$root.user != null && $root.user != undefined">
           <img src="./images/profile-picture.jpg" alt="..." class="border rounded-circle userProfilePicture pull-right">
           <a class="userName pull-right">{{$root.user.firstName}}</a>
         </div>
-        <a class="btn btn-success logOutButton backgroundTransient navbarButton" ng-click="logOut()" ng-show="$root.user != null && $root.user != undefined" >Log Out</a>
+        <a class="btn btn-lg btnLogOutButton backgroundTransient navbarButton"
+           ng-click="logOut()" ng-show="$root.user != null && $root.user != undefined">
+          Log Out
+        </a>
       </div>
     </form>
   </div>

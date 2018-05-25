@@ -10,8 +10,21 @@
 
 .logInOutBtn {
   width: 160px;
+  color: white;
+  font-size: 1.7rem;
 }
 
 .signInUpBtn {
   margin-right: 25px;
+  color: white;
+}
+
+.btnLogOutButton {
+  color: white !important;
+  padding-top: 1%;
+  font-size: 1.4rem;
+}
+
+.btnLogOutButton:hover {
+  color: blue !important;
 }

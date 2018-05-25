@@ -6,24 +6,25 @@ app.config(function ($qProvider, $stateProvider, $urlRouterProvider) {
     url: '/home',
     views: {
       'homeNav': {
-        templateUrl: 'views/user-home/user-home.html',
-        controller: 'HomeController'
+        templateUrl: 'views/cover-photo.html'
       },
       'mainView': {
-        templateUrl: 'views/home.html',
-        controller: 'HomeController'
+        templateUrl: 'views/home.html'
       }
     }
   });
 
-  $urlRouterProvider.otherwise("userHome");
+  $urlRouterProvider.otherwise("home");
 });
 
-app.run(function($rootScope, $window, $localStorage) {
+app.run(function($rootScope, $window, $localStorage, $location) {
 
     $rootScope.user = $localStorage.loggedUser;
     $rootScope.userLogged = {};
     $rootScope.localhost = "http://localhost:8000/";
-    $rootScope.userHome = true;
 
+    if ($rootScope.user != null) {
+        $location.path("/userHome");
+        $rootScope.userHome = true;
+    }
   });

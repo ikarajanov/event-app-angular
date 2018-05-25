@@ -73,7 +73,7 @@
 
   <div ng-include="'views/nav/nav.html'"></div>
 
-  <div ng-show="$root.user != null">
+  <div>
     <ui-view name="homeNav">
     </ui-view>
 
@@ -82,15 +82,16 @@
     </div>
   </div>
 
-  <div ng-show="$root.user == null" class="coverPageContainer">
-    <h1 class="coverPageHeader">Evento</h1>
-    <hr class="mb-4 coverPageHr">
-    <h3 class="coverPageSubtitle">A range of features at your disposal to tailor your event</h3>
-  </div>
-
   <footer class="appFooter">
     <div class="container footerContainer">
-      <p style="text-align: center;"><a href="#/userHome">Back to top <span class="glyphicon glyphicon-menu-up"></span> </a></p>
+      <p style="text-align: center;">
+        <a ng-if="$root.user == null" href="#!/home">
+          Back to top <span class="glyphicon glyphicon-menu-up"></span>
+        </a>
+        <a ng-if="$root.user != null" href="#!/userHome">
+          Back to top <span class="glyphicon glyphicon-menu-up"></span>
+        </a>
+      </p>
     </div>
   </footer>
 </body>
