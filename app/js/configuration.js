@@ -26,5 +26,8 @@ app.run(function($rootScope, $window, $localStorage, $location) {
     if ($rootScope.user != null) {
         $location.path("/userHome");
         $rootScope.userHome = true;
+    } else {
+        $location.path("/home");
+        $rootScope.userHome = false
     }
   });

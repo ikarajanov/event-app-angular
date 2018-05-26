@@ -147,12 +147,48 @@ app.factory("eventFactory", function($http, $localStorage, $q) {
       return deferred.promise;
   }
 
+    function findEvents(searchModel) {
+        var deferred = $q.defer();
+
+        var latitude = null;
+        var longitude = null;
+        if (searchModel.location != null) {
+            latitude = searchModel.location.latitude;
+            longitude = searchModel.location.longitude;
+        }
+
+        $http({
+            method: 'GET',
+            url: me.port + me.prefix + '/findBy',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+                'Access-Control-Allow-Origin' : '*'
+            },
+            params: {
+                userId: searchModel.userId,
+                distance: searchModel.range,
+                latitude: latitude,
+                longitude: longitude,
+                category: searchModel.category
+
+            }
+        }).then(function(events){
+            $localStorage.events = events.data;
+            deferred.resolve();
+        }, function(error){
+            deferred.reject(error);
+        });
+
+        return deferred.promise;
+    }
+
   return {
     getUserEvents: getUserEvents,
     getNearbyEvents: getNearbyEvents,
     createNewEvent: createNewEvent,
     deleteEvent: deleteEvent,
     getEventCategories: getEventCategories,
+    findEvents: findEvents,
     getEventLocations: getEventLocations
   }
 });

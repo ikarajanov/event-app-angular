@@ -1,3 +1,32 @@
+<div class="container searchAreaContainer" ng-if="$root.userHome">
+  <md-input-container class="searchAreaItem">
+    <md-select ng-model="searchModel.category" placeholder="Category">
+      <md-option><em>None</em></md-option>
+      <md-option ng-repeat="category in categories"
+                 ng-value="category" ng-disabled="$index === -1">
+        {{category}}
+      </md-option>
+    </md-select>
+  </md-input-container>
+
+  <md-input-container class="searchAreaItemLocation">
+    <label>Location</label>
+    <input type="text" g-places-autocomplete ng-model="searchModel.location" />
+  </md-input-container>
+
+  <md-input-container class="searchAreaItem" id="rangeItem">
+    <label>Range</label>
+    <input type="number" id="event-max-att" ng-model="searchModel.range">
+  </md-input-container>
+  <span>km.</span>
+
+  <div id="searchButtonContainer">
+    <button class="btn btn-primary" ng-click="searchEvents()">
+      Search
+    </button>
+  </div>
+
+</div>
 <div class="container eventContainer">
   <div class="row">
     <div ng-repeat="event in events" class="col-lg-4" >
