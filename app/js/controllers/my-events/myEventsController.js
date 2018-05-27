@@ -1,13 +1,19 @@
 app.controller('MyEventsController', function($scope, $rootScope, $location,
-                                              $localStorage, eventFactory, $mdToast, $mdDialog) {
+                                              $localStorage, eventFactory, $mdToast, $mdDialog,
+                                              PaginationModel) {
 
     $rootScope.userHome = $location.path().indexOf('userHome') > -1;
     $scope.events = {};
+    $scope.paginationModel = PaginationModel;
+    var me = this;
+    me.paginationStep = 0;
+    $scope.paginationModel.startValue = 1 + 5 * me.paginationStep;
+    $scope.paginationModel.actualValue = $scope.paginationModel.startValue;
 
       $scope.getUserEvents = function() {
 
           if ($localStorage.loggedUser != null) {
-              var promise = eventFactory.getUserEvents();
+              var promise = eventFactory.getUserEvents($scope.paginationModel.actualValue);
 
               promise.then(function () {
                   $scope.events = $localStorage.events;
@@ -50,6 +56,33 @@ app.controller('MyEventsController', function($scope, $rootScope, $location,
         }, function () {
             $scope.events = $localStorage.events;
         });
+    };
+
+
+    $scope.nextEventPage = function(paginationValue) {
+
+        if (paginationValue > 0) {
+
+            $scope.paginationModel.actualValue = paginationValue;
+
+            if ($scope.paginationModel.actualValue % 5 === 0 && me.paginationStep > 0) {
+                if ((me.paginationStep + 1) * 5 !== $scope.paginationModel.actualValue) {
+                    me.paginationStep -= 1;
+                }
+            }
+
+            if ($scope.paginationModel.actualValue % 5 === 1) {
+                if ((me.paginationStep + 1) * 5 < $scope.paginationModel.actualValue) {
+                    me.paginationStep += 1;
+                }
+            }
+
+            $scope.paginationModel.startValue = 1 + 5 * me.paginationStep;
+
+            $scope.getUserEvents();
+
+            angular.element('#hiddenInput').focus()
+        }
     };
 
     $scope.getUserEvents();

@@ -6,7 +6,7 @@ app.factory("eventFactory", function($http, $localStorage, $q) {
   me.categories = {};
   me.locations = {};
 
-  function getUserEvents() {
+  function getUserEvents(step) {
 
     var deferred = $q.defer();
     var userId = $localStorage.loggedUser.id;
@@ -15,7 +15,10 @@ app.factory("eventFactory", function($http, $localStorage, $q) {
       method: 'GET',
       url: me.port + me.prefix + '/getUserEvents',
       headers : {'Accept' : 'application/json'},
-      params: {userId: userId}
+      params: {
+          userId: userId,
+          step: step - 1
+      }
     }).then(function(events){
       $localStorage.events = events.data;
       deferred.resolve();
@@ -101,7 +104,7 @@ app.factory("eventFactory", function($http, $localStorage, $q) {
     return deferred.promise;
   }
 
-  function getNearbyEvents(radius) {
+  function getNearbyEvents(radius, step) {
 
       var deferred = $q.defer();
       var userId = $localStorage.loggedUser.id;
@@ -112,7 +115,8 @@ app.factory("eventFactory", function($http, $localStorage, $q) {
           headers : {'Accept' : 'application/json'},
           params: {
             userId: userId,
-            radius: radius
+            radius: radius,
+            step: step - 1
           }
       }).then(function(events){
           $localStorage.events = events.data;
@@ -147,7 +151,7 @@ app.factory("eventFactory", function($http, $localStorage, $q) {
       return deferred.promise;
   }
 
-    function findEvents(searchModel) {
+    function findEvents(searchModel, step) {
         var deferred = $q.defer();
 
         var latitude = null;
@@ -169,8 +173,8 @@ app.factory("eventFactory", function($http, $localStorage, $q) {
                 distance: searchModel.range,
                 latitude: latitude,
                 longitude: longitude,
-                category: searchModel.category
-
+                category: searchModel.category,
+                step: step - 1
             }
         }).then(function(events){
             $localStorage.events = events.data;
