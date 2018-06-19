@@ -1,5 +1,5 @@
 <md-dialog class="event-dialog eventDialogContainer" aria-label="Create Event">
-  <form ng-cloak>
+  <form ng-cloak name="createEventForm">
     <md-toolbar>
       <div class="md-toolbar-tools bg-dark">
         <h2>Create Your Event</h2>
@@ -16,13 +16,18 @@
           <div class="col-md-12 login-title">
             <h2>Event</h2>
           </div>
+          <div ng-show="invalidCreateEventForm" class="singUpAlert">
+            <div class="alert alert-danger" role="alert">
+              Please fill all mandatory fields.
+            </div>
+          </div>
           <form>
             <div class="form-row mainInfo">
               <div class="form-group col-md-6">
 
                 <md-input-container class="blockElement">
                   <label>Name</label>
-                  <input type="text" id="event-name" ng-model="event.name">
+                  <input type="text" id="event-name" ng-model="event.name" required>
                 </md-input-container>
 
                 <md-input-container class="blockElement">
@@ -30,7 +35,7 @@
                   <md-select ng-model="event.category">
                     <md-option><em>None</em></md-option>
                     <md-option ng-repeat="category in categories"
-                               ng-value="category" ng-disabled="$index === -1">
+                               ng-value="category" ng-disabled="$index === -1" required>
                       {{category}}
                     </md-option>
                   </md-select>
@@ -38,12 +43,13 @@
 
                 <md-input-container class="blockElement">
                   <label>Location</label>
-                  <input type="text" g-places-autocomplete ng-model="event.location" />
+                  <input type="text" g-places-autocomplete ng-model="event.location" required />
                 </md-input-container>
 
                 <md-input-container class="blockElement maxAttendeesPickerBlock">
                   <label>Max Attendees</label>
-                  <input type="number" id="event-max-att" ng-model="event.numberOfPeopleAttending" placeholder="Unlimited">
+                  <input type="number" id="event-max-att" ng-model="event.numberOfPeopleAttending"
+                         placeholder="Unlimited" required>
                 </md-input-container>
 
               </div>
@@ -69,19 +75,19 @@
                 <md-input-container class="eventDatePickerBlock">
                   <h6 class="eventDateHeader">Start date</h6>
                   <md-datepicker ng-model="event.startDate" md-placeholder="Start date" class="eventDatePicker"
-                                 md-open-on-focus></md-datepicker>
+                                 md-open-on-focus required></md-datepicker>
                   <md-time-picker  ng-model="event.startTime" message="message" read-only="readonly"
                                    class="eventDatePicker"
-                                   mandatory="required" no-meridiem no-auto-switch></md-time-picker>
+                                   mandatory="required" no-meridiem no-auto-switch required></md-time-picker>
                 </md-input-container>
 
                 <md-input-container class="eventDatePickerBlock">
                   <h6 class="eventDateHeader">End date</h6>
                   <md-datepicker ng-model="event.endDate" md-placeholder="End date" class="eventDatePicker"
-                                 md-open-on-focus></md-datepicker>
+                                 md-open-on-focus required></md-datepicker>
                   <md-time-picker  ng-model="event.endTime" message="message" read-only="readonly"
                                    class="eventDatePicker"
-                                   mandatory="required" no-meridiem no-auto-switch></md-time-picker>
+                                   mandatory="required" no-meridiem no-auto-switch required></md-time-picker>
                 </md-input-container>
               </div>
             </div>
@@ -90,7 +96,7 @@
                 <div layout="row">
                   <md-input-container>
                     <label>Description</label>
-                    <textarea rows="4" cols="100" ng-model="event.description"></textarea>
+                    <textarea rows="4" cols="100" ng-model="event.description" required></textarea>
                   </md-input-container>
                 </div>
               </div>
@@ -105,7 +111,7 @@
         Cancel
       </md-button>
       <span flex></span>
-      <md-button class="md-raised md-primary" ng-click="createEvent()" md-autofocus>
+      <md-button class="md-raised md-primary" ng-click="createEvent(createEventForm.$invalid)" md-autofocus>
         Create
       </md-button>
     </md-dialog-actions>

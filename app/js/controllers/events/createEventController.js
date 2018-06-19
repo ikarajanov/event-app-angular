@@ -7,11 +7,13 @@ app.controller('CreateEventController', function($scope, eventFactory, $mdDialog
   $scope.categories = {};
   $scope.myImage = '';
   $scope.myCroppedImage='';
+  $scope.invalidCreateEventForm = false;
 
   $scope.createEvent = function(invalidForm) {
 
     if (invalidForm) {
-      return;
+        $scope.invalidCreateEventForm = true;
+        return;
     }
 
     $scope.event.location = LocationUtility.createLocation($scope.event.location);

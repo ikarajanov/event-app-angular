@@ -10,22 +10,22 @@ app.controller('MyEventsController', function($scope, $rootScope, $location,
     $scope.paginationModel.startValue = 1 + 5 * me.paginationStep;
     $scope.paginationModel.actualValue = $scope.paginationModel.startValue;
 
-      $scope.getUserEvents = function() {
+    $scope.getUserEvents = function() {
 
-          if ($localStorage.loggedUser != null) {
-              var promise = eventFactory.getUserEvents($scope.paginationModel.actualValue);
+        if ($localStorage.loggedUser != null) {
+            var promise = eventFactory.getUserEvents($scope.paginationModel.actualValue);
 
-              promise.then(function () {
-                  $scope.events = $localStorage.events;
-              }, function () {
-                  $mdToast.show(
-                      $mdToast.simple()
-                          .textContent('Some error occurs!')
-                          .position('top right')
-                          .toastClass("toastStyle"));
-              })
-          }
-      };
+           promise.then(function () {
+               $scope.events = $localStorage.events;
+               }, function () {
+               $mdToast.show(
+                   $mdToast.simple()
+                       .textContent('Some error occurs!')
+                       .position('top right')
+                       .toastClass("toastStyle"));
+           })
+        }
+    };
 
     $scope.showAdvanced = function(ev) {
         $mdDialog.show({
@@ -36,10 +36,9 @@ app.controller('MyEventsController', function($scope, $rootScope, $location,
             clickOutsideToClose: true,
             fullscreen: false // Only for -xs, -sm breakpoints.
         }).then(function() {
-            $location.path("/myEvents");
-            $scope.events = $localStorage.events;
+            $scope.getUserEvents();
         }, function() {
-            $scope.events = $localStorage.events;
+            $scope.getUserEvents();
         });
     };
 
@@ -52,9 +51,9 @@ app.controller('MyEventsController', function($scope, $rootScope, $location,
             targetEvent: ev,
             clickOutsideToClose: true
         }).then(function () {
-            $scope.events = $localStorage.events;
+            $scope.getUserEvents();
         }, function () {
-            $scope.events = $localStorage.events;
+            $scope.getUserEvents();
         });
     };
 
