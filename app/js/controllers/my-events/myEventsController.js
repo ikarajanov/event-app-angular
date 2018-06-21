@@ -1,6 +1,6 @@
 app.controller('MyEventsController', function($scope, $rootScope, $location,
                                               $localStorage, eventFactory, $mdToast, $mdDialog,
-                                              PaginationModel) {
+                                              PaginationModel, $state) {
 
     $rootScope.userHome = $location.path().indexOf('userHome') > -1;
     $scope.events = {};
@@ -37,6 +37,7 @@ app.controller('MyEventsController', function($scope, $rootScope, $location,
             fullscreen: false // Only for -xs, -sm breakpoints.
         }).then(function() {
             $scope.getUserEvents();
+            $state.go($state.current, {}, {reload: true});
         }, function() {
             $scope.getUserEvents();
         });

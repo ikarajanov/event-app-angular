@@ -29,31 +29,28 @@ app.factory("eventFactory", function($http, $localStorage, $q) {
     return deferred.promise;
   }
 
-  function createNewEvent(event, image) {
+    function createNewEvent(event, image) {
 
-    var deferred = $q.defer();
+        var deferred = $q.defer();
 
-    $http({
-      method: 'POST',
-      url: me.port + me.prefix + '/createNew',
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8',
-        'Access-Control-Allow-Origin' : '*'
-      },
-      data: {
-        event: event,
-        image: image
-      }
-    }).then(function(events){
-      $localStorage.events = events.data;
-      deferred.resolve();
-    }, function(error){
-      deferred.reject(error);
-    });
+        $http({
+            method: 'POST',
+            url: me.port + me.prefix + '/createNew',
+            headers : {'Accept' : 'application/json'},
+            data: {
+                event: event,
+                image: image
+            }
+        }).then(function(events){
+            $localStorage.events = events.data;
+            deferred.resolve();
+        }, function(error){
+            deferred.reject(error);
+        });
 
-    return deferred.promise;
-  }
-  
+        return deferred.promise;
+    }
+
   function getEventCategories() {
 
     var deferred = $q.defer();

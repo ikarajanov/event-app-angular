@@ -1,5 +1,6 @@
 app.controller('CreateEventController', function($scope, eventFactory, $mdDialog, $mdToast,
-                                                 Upload, $timeout, Location, $localStorage, LocationUtility) {
+                                                 Upload, $timeout, Location, $localStorage, LocationUtility,
+                                                 parent) {
 
   var me = this;
   $scope.event = {};
@@ -22,7 +23,7 @@ app.controller('CreateEventController', function($scope, eventFactory, $mdDialog
     var promise = eventFactory.createNewEvent($scope.event, $scope.myCroppedImage);
 
     promise.then(function() {
-      $mdDialog.hide();
+        $scope.hide();
     }, function () {
       $mdToast.show(
           $mdToast.simple()
