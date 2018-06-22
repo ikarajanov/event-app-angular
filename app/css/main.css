@@ -68,3 +68,9 @@ body {
   font-family: 'Shojumaru';
   color: #f00;
 }
+
+.carouselHeader {
+  font-size: 2.75rem;
+  color: red;
+  font-family: 'Shojumaru';
+}
